@@ -12,5 +12,36 @@ A random number will be generated every 5 seconds.*/
 // Bonus
 // 1) Add some additional styling to your application.
 // 2) Create on and off buttons that will start and stop your application.
+//create random number 0 - 36
+var on = true;
+var myBotton = document.getElementById('btn')
+myBotton.addEventListener('click', controlIt);
+var showElem = document.getElementById('show');
+var random;
+function randomNum(){
+	var randomN = Math.floor(Math.random() * 36);
+	console.log(randomN)
+	showElem.innerHTML = randomN;
+	if(randomN === 0){
+		document.body.style.backgroundColor = 'green';
+		document.body.style.color = 'white';
+	}else if(randomN % 2 === 0){
+		document.body.style.backgroundColor = "black";
+		document.body.style.color = "white";
+	}else{
+		document.body.style.backgroundColor = "red";
+		document.body.style.color = "white";
+	}
 
-
+}
+function controlIt(){
+	if(!on){
+		on = true;
+		random = setInterval(randomNum, 500);
+		myBotton.innerHTML = 'Stop';
+	}else{
+		on = false;
+		clearInterval(random);
+		myBotton.innerHTML = 'Start';
+	}
+}
